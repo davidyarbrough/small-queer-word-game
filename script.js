@@ -174,11 +174,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkGuess(guess) {
         const guessLower = guess.toLowerCase();
         const targetLetters = targetWord.split('');
+        const rowToCheck = currentRow; // Store current row value to prevent timing issues
         
         // First pass: mark correct letters
         for (let i = 0; i < wordLength; i++) {
             setTimeout(() => {
-                const tile = document.querySelector(`.game-tile[data-row="${currentRow}"][data-col="${i}"]`);
+                const tile = document.querySelector(`.game-tile[data-row="${rowToCheck}"][data-col="${i}"]`);
                 tile.classList.add('flip');
                 
                 const keyButton = document.querySelector(`button[data-key="${guessLower[i]}"]`);
