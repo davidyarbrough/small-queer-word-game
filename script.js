@@ -140,8 +140,25 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Function to handle mobile keyboard input
     function setupMobileKeyboard() {
-        const mobileInput = document.getElementById('mobile-input');
+        // Create the mobile input if it doesn't exist
+        let mobileInput = document.getElementById('mobile-input');
+        if (!mobileInput) {
+            mobileInput = document.createElement('input');
+            mobileInput.id = 'mobile-input';
+            mobileInput.className = 'mobile-keyboard-input';
+            mobileInput.setAttribute('autocomplete', 'off');
+            mobileInput.setAttribute('autocorrect', 'off');
+            mobileInput.setAttribute('autocapitalize', 'off');
+            mobileInput.setAttribute('spellcheck', 'false');
+            
+            const gameBoard = document.getElementById('game-board');
+            if (gameBoard) {
+                gameBoard.appendChild(mobileInput);
+            }
+        }
+        
         const gameBoard = document.getElementById('game-board');
+        if (!gameBoard || !mobileInput) return; // Exit if elements not found
         
         // Focus the hidden input when tapping the game board (mobile)
         gameBoard.addEventListener('click', () => {
