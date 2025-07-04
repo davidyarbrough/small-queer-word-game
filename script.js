@@ -105,6 +105,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('keydown', (e) => {
             if (gameOver) return;
             
+            // Skip if the event originated from the mobile input to avoid double keypresses
+            if (e.target && e.target.id === 'mobile-input') {
+                return;
+            }
+            
             const key = e.key.toLowerCase();
             
             if (key === 'enter') {
@@ -166,6 +171,15 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Focus the input to bring up the mobile keyboard
             mobileInput.focus();
+            
+            // Scroll the game board to the top of the screen
+            setTimeout(() => {
+                const gameBoard = document.getElementById('game-board');
+                if (gameBoard) {
+                    // Use smooth scrolling on mobile
+                    gameBoard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 300); // Small delay to allow keyboard to start appearing
         });
         
         // Handle input from the mobile keyboard
