@@ -1,10 +1,6 @@
 # Small Queer Word Game
 
-A Wordle-like word guessing game with a queer-themed word list. 
-
-## About
-
-This is a simple HTML5 reimplementation of the popular word game Wordle, with a selection of queer-themed and positive words. The game challenges you to guess a 5-letter word in 6 attempts.
+A simple word guessing game. 
 
 ## How to Play
 
@@ -22,6 +18,10 @@ Open the `index.html` file in any modern web browser to play the game.
 ## Technology
 
 Built with vanilla HTML, CSS, and JavaScript.
+
+## Credits
+
+Words courtesy of https://github.com/dwyl/english-words
 
 ## Community Support
 
