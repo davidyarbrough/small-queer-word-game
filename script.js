@@ -103,14 +103,21 @@ document.addEventListener('DOMContentLoaded', () => {
     function setupKeyboardEvents() {
         // Physical keyboard events
         document.addEventListener('keydown', (e) => {
-            if (gameOver) return;
-            
             // Skip if the event originated from the mobile input to avoid double keypresses
             if (e.target && e.target.id === 'mobile-input') {
                 return;
             }
             
             const key = e.key.toLowerCase();
+            
+            // If game is over and Enter is pressed, start a new game
+            if (gameOver && key === 'enter') {
+                resetGame();
+                return;
+            }
+            
+            // Don't process other keys if game is over
+            if (gameOver) return;
             
             if (key === 'enter') {
                 submitGuess();
@@ -197,6 +204,14 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Handle special keys
         mobileInput.addEventListener('keydown', (e) => {
+            // If game is over and Enter is pressed, start a new game
+            if (gameOver && e.key === 'Enter') {
+                resetGame();
+                e.preventDefault();
+                return;
+            }
+            
+            // Don't process other keys if game is over
             if (gameOver) return;
             
             if (e.key === 'Enter') {
