@@ -1,6 +1,9 @@
 # Small Queer Word Game
 
-A simple word guessing game. 
+Play it here: https://davidyarbrough.github.io/small-queer-word-game/
+
+SQWG (pronounced "skoog") is a simple word guessing game. If you want to play a word game but DON'T want to support 
+news outlets that amplify eugenicists, have I got a game for you.
 
 ## How to Play
 
