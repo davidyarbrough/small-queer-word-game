@@ -22,3 +22,7 @@ Open the `index.html` file in any modern web browser to play the game.
 ## Technology
 
 Built with vanilla HTML, CSS, and JavaScript.
+
+## Community Support
+
+This game includes a banner ad for [The Trevor Project](https://www.thetrevorproject.org/), a nonprofit organization focused on suicide prevention efforts among LGBTQ+ youth. Clicking on the banner will direct users to a donation page where they can support this important cause.

@@ -8,13 +8,22 @@
 body {
     background-color: #121213;
     color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     height: 100vh;
     margin: 0;
     padding: 10px;
+    overflow-x: hidden;
+}
+
+.main-layout {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 20px;
 }
 
 .game-container {
@@ -188,4 +197,134 @@ button.absent {
     padding: 10px 20px;
     background-color: #538d4e;
     margin-top: 15px;
+}
+
+/* Trevor Project Banner Styles */
+.banner-container {
+    width: 250px;
+    margin-top: 20px;
+    position: sticky;
+    top: 20px;
+}
+
+.mobile-banner {
+    width: 100%;
+    margin-bottom: 20px;
+    display: none;
+}
+
+/* Hide/show elements based on screen size */
+.desktop-only {
+    display: block;
+}
+
+.mobile-only {
+    display: none;
+}
+
+.trevor-banner {
+    display: block;
+    width: 100%;
+    background: linear-gradient(45deg, #5BCEFA, #F5A9B8, #FFFFFF, #F5A9B8, #5BCEFA);
+    border-radius: 8px;
+    padding: 15px;
+    text-decoration: none;
+    color: #000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.trevor-banner:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.banner-content {
+    text-align: center;
+}
+
+.banner-content h3 {
+    margin: 0 0 15px;
+    color: #212121;
+    font-size: 1.2rem;
+}
+
+.banner-logo {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.trevor-logo {
+    width: 100%;
+    max-height: 60px;
+    object-fit: contain;
+}
+
+.banner-content p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 12px 0;
+    color: #212121;
+}
+
+.banner-cta {
+    background-color: #3a86ff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.banner-cta:hover {
+    background-color: #2563eb;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    body {
+        padding-top: 0;
+    }
+    
+    .main-layout {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    /* Hide desktop banner and show mobile banner */
+    .desktop-only {
+        display: none;
+    }
+    
+    .mobile-only {
+        display: block;
+    }
+    
+    .mobile-banner {
+        display: block;
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    
+    .game-container {
+        max-width: 95%;
+        margin-top: 10px;
+    }
+    
+    #game-board {
+        width: 300px;
+    }
+    
+    .game-tile {
+        width: 56px;
+        height: 56px;
+        font-size: 1.8rem;
+    }
+    
+    header h1 {
+        font-size: 1.7rem;
+    }
 }
