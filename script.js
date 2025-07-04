@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentTile = 0;
     let gameOver = false;
     let targetWord = '';
+    let isWordOfTheDay = true; // Track if playing the daily word
     const maxRows = 6;
     const wordLength = 5;
     
@@ -23,8 +24,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function setNewTargetWord() {
-        // Pick a random word from the word list
-        targetWord = WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)].toLowerCase();
+        if (isWordOfTheDay) {
+            // For Word of the Day: use date to select a consistent word
+            const today = new Date();
+            const zuluDate = today.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+            
+            // Generate a hash from the date string
+            let hash = 0;
+            for (let i = 0; i < zuluDate.length; i++) {
+                hash = ((hash << 5) - hash) + zuluDate.charCodeAt(i);
+                hash = hash & hash; // Convert to 32bit integer
+            }
+            
+            // Use the absolute value of hash to select a word
+            const wordIndex = Math.abs(hash) % WORD_LIST.length;
+            targetWord = WORD_LIST[wordIndex].toLowerCase();
+            
+            // Display Word of the Day mode
+            document.getElementById('game-mode').textContent = `WOTD for ${zuluDate}`;
+        } else {
+            // Free Play mode: select a random word
+            targetWord = WORD_LIST[Math.floor(Math.random() * WORD_LIST.length)].toLowerCase();
+            
+            // Display Free Play mode
+            document.getElementById('game-mode').textContent = "Free Play";
+        }
+        
         console.log(`Target word: ${targetWord}`); // For debugging
     }
     
@@ -216,6 +241,9 @@ document.addEventListener('DOMContentLoaded', () => {
         currentRow = 0;
         currentTile = 0;
         gameOver = false;
+        
+        // Switch to Free Play mode for subsequent games
+        isWordOfTheDay = false;
         
         // Reset UI
         createGameBoard();
