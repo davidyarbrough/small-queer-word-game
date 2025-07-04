@@ -22,6 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function init() {
         // Create the game board
+
+        console.log(`BUSTED. Yes, you can cheat by editing the local storage.`); 
+        console.log(`If you hack the game and post the results to social, please mention the Trevor Project.`);
+        console.log(`If you find a bug, hit me up on Github.`)
         createGameBoard();
         
         // Pick a random word and check for saved progress
@@ -74,8 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Clear any WOTD saved data to prevent confusion
             wotdDate = '';
         }
-        
-        console.log(`Target word: ${targetWord}`); // For debugging
     }
     
     function createGameBoard() {
