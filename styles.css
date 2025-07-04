@@ -193,6 +193,19 @@ button.absent {
     display: none;
 }
 
+/* Mobile keyboard input styling */
+.mobile-keyboard-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    width: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+}
+
 #new-game {
     padding: 10px 20px;
     background-color: #538d4e;

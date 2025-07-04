@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Create the game board
 
         console.log(`BUSTED. Yes, you can cheat by editing the local storage.`); 
-        console.log(`If you hack the game and post the results to social, please mention the Trevor Project.`);
-        console.log(`If you find a bug, hit me up on Github.`)
+        console.log(`If you hack the game and post the results to social, please mention The Trevor Project.`);
+        console.log(`If you find a bug, hit me up on Github https://github.com/davidyarbrough/small-queer-word-game/issues`)
         createGameBoard();
         
         // Pick a random word and check for saved progress
@@ -102,15 +102,79 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function setupKeyboardEvents() {
         // Physical keyboard events
-        document.addEventListener('keydown', handleKeyPress);
+        document.addEventListener('keydown', (e) => {
+            if (gameOver) return;
+            
+            const key = e.key.toLowerCase();
+            
+            if (key === 'enter') {
+                submitGuess();
+            } else if (key === 'backspace') {
+                deleteLetter();
+            } else if (/^[a-z]$/.test(key)) {
+                addLetter(key);
+            }
+        });
         
-        // Virtual keyboard events
+        // On-screen keyboard events
         const keys = document.querySelectorAll('#keyboard button');
         keys.forEach(key => {
             key.addEventListener('click', () => {
+                if (gameOver) return;
+                
                 const keyValue = key.getAttribute('data-key');
-                handleKeyInput(keyValue);
+                
+                if (keyValue === 'enter') {
+                    submitGuess();
+                } else if (keyValue === 'del') {
+                    deleteLetter();
+                } else {
+                    addLetter(keyValue);
+                }
             });
+        });
+        
+        // Setup mobile input handling
+        setupMobileKeyboard();
+    }
+    
+    // Function to handle mobile keyboard input
+    function setupMobileKeyboard() {
+        const mobileInput = document.getElementById('mobile-input');
+        const gameBoard = document.getElementById('game-board');
+        
+        // Focus the hidden input when tapping the game board (mobile)
+        gameBoard.addEventListener('click', () => {
+            if (gameOver) return;
+            
+            // Focus the input to bring up the mobile keyboard
+            mobileInput.focus();
+        });
+        
+        // Handle input from the mobile keyboard
+        mobileInput.addEventListener('input', (e) => {
+            if (gameOver) return;
+            
+            const lastChar = e.data ? e.data.toLowerCase() : '';
+            if (/^[a-z]$/.test(lastChar)) {
+                addLetter(lastChar);
+            }
+            
+            // Clear the input for next letter
+            mobileInput.value = '';
+        });
+        
+        // Handle special keys
+        mobileInput.addEventListener('keydown', (e) => {
+            if (gameOver) return;
+            
+            if (e.key === 'Enter') {
+                submitGuess();
+                e.preventDefault();
+            } else if (e.key === 'Backspace') {
+                deleteLetter();
+                e.preventDefault();
+            }
         });
     }
     
